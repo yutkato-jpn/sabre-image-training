@@ -1,0 +1,16 @@
+{
+  "name": "Sabre Mind — サーブル・イメトレ",
+  "short_name": "Sabre Mind",
+  "description": "サーブル専用イメージトレーニングアプリ。ガイド付きイメトレ・予測ドリル・動画先読みトレーニング。",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d1117",
+  "theme_color": "#0d1117",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
