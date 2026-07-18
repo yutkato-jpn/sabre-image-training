@@ -163,7 +163,7 @@ function renderSettings(v) {
     <label class="field"><span class="label">自分の剣・グリップ(例: ベルギアングリップの◯◯)</span><input type="text" id="p-weapon" value="${esc(p.weapon)}"></label>
     <label class="field"><span class="label">ホームの練習場(例: ◯◯体育館)</span><input type="text" id="p-homeGym" value="${esc(p.homeGym)}"></label>
     <label class="field"><span class="label">よく出る試合会場(例: 駒沢体育館)</span><input type="text" id="p-venue" value="${esc(p.venue)}"></label>
-    <label class="field"><span class="label">得意技(例: 相手の出鼻へのアタック・オン・プレパレーション)</span><input type="text" id="p-bestMove" value="${esc(p.bestMove)}"></label>
+    <label class="field"><span class="label">得意技(例: 出鼻を捉えるプレパラシオンへのアタック)</span><input type="text" id="p-bestMove" value="${esc(p.bestMove)}"></label>
     <label class="field"><span class="label">セルフトーク(例: 足から。先に仕掛ける)</span><input type="text" id="p-selfTalk" value="${esc(p.selfTalk)}"></label>
     <button class="btn block" id="btn-save">保存する</button>
 
@@ -233,7 +233,7 @@ function renderAbout(v) {
 
     <h3>エビデンスの要点</h3>
     <ul>
-      <li><strong>フェンシング選手19名の実験(2025)</strong>: 1分のガイド付きイメージ直後に、突きの的中+25.5%、ランジ距離+11.1%。経験者ほどランジ距離に効果</li>
+      <li><strong>フェンシング選手19名の実験(2025)</strong>: 1分のガイド付きイメージ直後に、突きの的中+25.5%、ファント(ランジ)距離+11.1%。経験者ほどファントの距離に効果</li>
       <li><strong>最適な量(メタ分析)</strong>: 1回10〜15分・週3〜4回。30分超は精神的疲労で逆効果になり得る。4週間以上で効果蓄積</li>
       <li><strong>時間遮蔽訓練(メタ分析 2024)</strong>: 「動作の途中で映像を止めて続きを予測する」訓練は予測力を向上させ、実際のプレーに転移する</li>
       <li><strong>PETTLEP原則</strong>: 一人称視点・実速度・実際の会場・感情込みなど、実演技に近いイメージほど効果が高い</li>

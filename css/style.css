@@ -181,6 +181,10 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); ou
   background: var(--bg-soft); border-left: 3px solid var(--accent);
   font-size: 0.88rem; color: var(--text-dim); white-space: pre-wrap;
 }
+.drill-basis {
+  margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--line);
+  font-size: 0.74rem; color: var(--text-faint);
+}
 .drill-score { text-align: center; margin: 20px 0; }
 .drill-score .big { font-size: 3rem; font-weight: 800; }
 
