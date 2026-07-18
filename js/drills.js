@@ -1,5 +1,5 @@
 // 予測(先読み)ドリル
-import { PRESET_DRILLS, DRILL_CATEGORIES } from './data/drills.js';
+import { PRESET_DRILLS, DRILL_CATEGORIES, BASIS_TYPES } from './data/drills.js';
 import { store } from './storage.js';
 import { esc, navigate, uid } from './util.js';
 
@@ -14,7 +14,7 @@ export function renderDrills(view) {
   view.innerHTML = `
     <h2>予測(先読み)ドリル</h2>
     <p class="lead">「相手がこう動いたら次は何が来るか」のパターン辞書を作るクイズです。0.2秒の反応限界は、反射ではなく<b>予測</b>で超えます。</p>
-    <div class="notice">⚠ 戦術判断には流派・スタイルによる差があります。ここでの「正解」は一般的なセオリーです。所属コーチの指導と異なる場合はコーチを優先してください。</div>
+    <div class="notice">⚠ 戦術判断には流派・スタイルによる差があります。各問題の解説には根拠の種別(📖競技規則 / 🔬研究 / 🎓コーチング文献 / 💭一般セオリー)を表示します。所属コーチの指導と異なる場合はコーチを優先してください。</div>
     <h3>出題カテゴリ</h3>
     <div class="chip-row" id="cat-chips">
       ${cats.map((c) => `<button class="chip on" data-cat="${c}">${DRILL_CATEGORIES[c]}</button>`).join('')}
@@ -110,8 +110,12 @@ function runQuiz(view, questions) {
           if (correct) firstTryCorrect++;
         }
         if (!correct) queue.push(q); // 間違いは後で再出題
+        const b = q.basis && BASIS_TYPES[q.basis.type];
+        const basisHtml = b
+          ? `<div class="drill-basis">根拠: ${b.icon} ${b.label}${q.basis.note ? ` — ${esc(q.basis.note)}` : ''}</div>`
+          : '';
         view.querySelector('#explain-box').innerHTML = `
-          <div class="drill-explain"><b>${correct ? '⭕ 正解' : '❌ 不正解' + (queue.length ? '(あとでもう一度出ます)' : '')}</b>\n${esc(q.explain)}</div>
+          <div class="drill-explain"><b>${correct ? '⭕ 正解' : '❌ 不正解' + (queue.length ? '(あとでもう一度出ます)' : '')}</b>\n${esc(q.explain)}${basisHtml}</div>
           <button class="btn block" id="btn-next" style="margin-top:14px">${queue.length ? '次の問題 ›' : '結果を見る'}</button>`;
         view.querySelector('#btn-next').addEventListener('click', next);
         view.querySelector('#btn-next').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
