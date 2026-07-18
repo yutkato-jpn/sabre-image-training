@@ -1,6 +1,6 @@
 // Service Worker — アプリシェルをキャッシュしてオフラインでも動作させる
 // (YouTube再生のみオンライン必須)
-const CACHE = 'sabre-mind-v2';
+const CACHE = 'sabre-mind-v3';
 const SHELL = [
   './',
   './index.html',
@@ -16,6 +16,7 @@ const SHELL = [
   './js/log.js',
   './js/data/scenarios.js',
   './js/data/drills.js',
+  './js/data/videos.js',
   './manifest.webmanifest',
   './icons/icon-192.png',
   './icons/icon-512.png',

@@ -185,6 +185,7 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); ou
   margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--line);
   font-size: 0.74rem; color: var(--text-faint);
 }
+.drill-basis a { color: var(--accent); text-decoration: none; }
 .drill-score { text-align: center; margin: 20px 0; }
 .drill-score .big { font-size: 3rem; font-weight: 800; }
 
