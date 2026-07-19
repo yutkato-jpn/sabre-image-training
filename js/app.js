@@ -259,6 +259,18 @@ function renderAbout(v) {
       <li><a href="https://www.mdpi.com/2076-3417/12/19/9753" target="_blank" rel="noopener">PETTLEP Systematic Review (Applied Sciences, 2022)</a></li>
       <li><a href="https://pubmed.ncbi.nlm.nih.gov/23404880/" target="_blank" rel="noopener">Layered Stimulus Response Training (2013)</a></li>
     </ul>
+
+    <h3>戦術コンテンツの出典動画</h3>
+    <p>ドリルとシナリオの戦術内容(🎥ラベル)は、以下の解説動画シリーズの考え方に基づいて作成しています。動画タブの「教材プリセット」からいつでも見られます。</p>
+    <ul>
+      <li><a href="https://youtu.be/7RAAHptGuh0" target="_blank" rel="noopener">3すくみ(Rock Paper Scissors) Level 1</a></li>
+      <li><a href="https://youtu.be/R2YmFybNKtY" target="_blank" rel="noopener">プレパレーション論</a></li>
+      <li><a href="https://youtu.be/a-rrIV5eiYc" target="_blank" rel="noopener">カウンターの3つの罠</a></li>
+      <li><a href="https://youtu.be/x2i8KX0fAkM" target="_blank" rel="noopener">パラードの6セットアップ</a></li>
+      <li><a href="https://youtu.be/VjwFkZGBzd0" target="_blank" rel="noopener">Level 2: Closed Eyes / Open Eyes</a></li>
+      <li><a href="https://youtu.be/zAKFfOe151M" target="_blank" rel="noopener">アグレッシブパラード</a></li>
+      <li><a href="https://youtu.be/B5fiRnHH-1E" target="_blank" rel="noopener">Bazadze分析</a> / <a href="https://youtu.be/upH8DhY1xRM" target="_blank" rel="noopener">Patrice分析</a> / <a href="https://youtu.be/Wq9k_28TNT0" target="_blank" rel="noopener">Heathcock vs Kokubo解説</a></li>
+    </ul>
     <p style="font-size:0.78rem;color:var(--text-faint)">※ 本アプリは研究知見に基づくトレーニング補助ツールであり、効果を保証するものではありません。戦術の「正解」は一般論です。所属コーチの指導を優先してください。</p>
     </div>`;
 }

@@ -2,6 +2,11 @@
 import { store } from './storage.js';
 import { tts } from './tts.js';
 import { esc, navigate, uid, parseYouTubeId } from './util.js';
+import { PRESET_VIDEOS } from './data/videos.js';
+
+function findAnyVideo(id) {
+  return store.getVideos().find((v) => v.id === id) || PRESET_VIDEOS.find((v) => v.id === id) || null;
+}
 
 let ytReadyPromise = null;
 let player = null;
@@ -42,13 +47,13 @@ export function renderVideos(view) {
     <p class="lead">研究で効果が実証されている<b>時間遮蔽(オクルージョン)訓練</b>: 動作の直前で映像を止め、「次に何が起こるか」を予測してから答え合わせします。上位選手の試合動画を登録して使ってください。</p>
     <a class="btn block" href="#video-edit">+ YouTube動画を登録</a>
     <div style="height:14px"></div>
-    ${vids.length ? vids.map(videoCard).join('') : `
-      <div class="empty">まだ動画がありません。<br><br>
-        おすすめの探し方:<br>
-        YouTubeで「<b>FIE sabre final</b>」「<b>fencing sabre semifinal</b>」などを検索し、<br>
-        良いトゥッシュのある試合のURLをコピーして登録してください。<br><br>
-        <a class="small-link" href="https://www.youtube.com/results?search_query=FIE+sabre+final" target="_blank" rel="noopener">YouTubeで「FIE sabre final」を検索 ↗</a>
+    ${vids.length ? vids.map((v) => videoCard(v, true)).join('') : `
+      <div class="empty" style="padding:16px 12px">自分の動画はまだありません。<br>
+        YouTubeで「<b>FIE sabre final</b>」等を検索してURLを登録するか、下の教材プリセットから始めてください。<br>
+        <a class="small-link" href="https://www.youtube.com/results?search_query=FIE+sabre+final" target="_blank" rel="noopener">YouTubeで検索 ↗</a>
       </div>`}
+    <h3>📚 教材プリセット <span style="font-weight:400;color:var(--text-faint);font-size:0.72rem">アプリの戦術コンテンツの出典動画</span></h3>
+    ${PRESET_VIDEOS.map((v) => videoCard(v, false)).join('')}
     <div class="card" style="margin-top:14px">
       <div class="card-title">💡 使い方のコツ</div>
       <div class="card-desc">
@@ -60,19 +65,19 @@ export function renderVideos(view) {
     </div>`;
 }
 
-function videoCard(v) {
+function videoCard(v, editable) {
   return `
     <div class="card">
       <div class="card-title">${esc(v.title)}</div>
       <div class="card-desc">${esc(v.memo || '')}</div>
       <div class="card-meta">
-        <span>▶ ${v.start || 0}s${v.occlusion ? ` → 停止 ${v.occlusion}s` : ''}${v.end ? ` → ${v.end}s` : ''}</span>
+        ${editable ? `<span>▶ ${v.start || 0}s${v.occlusion ? ` → 停止 ${v.occlusion}s` : ''}${v.end ? ` → ${v.end}s` : ''}</span>` : ''}
         ${v.tags ? `<span>🏷 ${esc(v.tags)}</span>` : ''}
       </div>
       <div class="btn-row">
-        <button class="btn small" onclick="location.hash='#video-play/${esc(v.id)}/occlusion'">⚡ 先読みモード</button>
+        ${v.bout || editable ? `<button class="btn small" onclick="location.hash='#video-play/${esc(v.id)}/occlusion'">⚡ 先読みモード</button>` : ''}
         <button class="btn secondary small" onclick="location.hash='#video-play/${esc(v.id)}/observe'">🧠 観察イメトレ</button>
-        <a class="btn ghost small" href="#video-edit/${esc(v.id)}">編集</a>
+        ${editable ? `<a class="btn ghost small" href="#video-edit/${esc(v.id)}">編集</a>` : `<a class="btn ghost small" href="https://youtu.be/${esc(v.videoId)}" target="_blank" rel="noopener">元動画 ↗</a>`}
       </div>
     </div>`;
 }
@@ -145,7 +150,7 @@ export function renderVideoEdit(view, id) {
 
 // ---------------- 再生 (先読み / 観察) ----------------
 export async function renderVideoPlay(view, id, mode) {
-  const v = store.getVideos().find((x) => x.id === id);
+  const v = findAnyVideo(id);
   if (!v) {
     view.innerHTML = '<div class="empty">動画が見つかりません。</div>';
     return;
